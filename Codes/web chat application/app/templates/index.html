@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat Application</title>
+		<link rel="stylesheet" type="text/css" href="static/css/styles.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	</head>
+	<body>
+		{{ moment.include_moment() }}
+		<div class="outer-container">
+			<div class="sidebar-container">
+				<div class="top-part">
+					<div class="sidebar-heading">
+						<h3>Available Chats</h3>
+					</div>
+					<div class="top-sidebar">
+						<div class="search-container">
+							<input type="text" placeholder="Search" class="search-input">
+							<button class="search-button"><i class="fas fa-search"></i></button>
+						</div>
+						<div class="add-user">
+							<i class="fas fa-user-plus"></i>
+						</div>
+					</div>
+				</div>
+				<div class="middle-part">
+					<div class="user-list">
+						{% for user in users %}
+						<div class="user">
+							<div class="user-image">
+								<img src = "{{ user.avatar(256) }}">
+							</div>
+							<div class="user-details">
+								<h3>
+									<a href = "{{url_for('main.select_user', user_id = user.id)}}">
+										{{ user.username }}
+									</a>
+								</h3>
+								<p>Last seen {{ moment(user.last_seen).fromNow(true) }}</p>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+				<div class="bottom-part">
+					<div class="bottom-sidebar">
+						<p>{{ current_user.email }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="mainarea-container">
+				<div class="chat-header">
+					<div class="contact-info">
+						{% if selected_user_id != 0 %}
+						<div class="contact-image">
+							<img src = "{{ selected_user.avatar(256) }}">
+						</div>
+						<div class="contact-details">
+							<h2>{{ selected_user.username }}</h2>
+							<p>Last seen <span>{{ moment(selected_user.last_seen).fromNow(true) }}</span></p>
+						</div>
+						{% endif %}
+					</div>
+					<div class="chat-header-right">
+						<ul class="header-actions">
+							<li>
+								<a href="{{ url_for('main.user', username=current_user.username) }}">
+									<i class="fas fa-user"></i> <!-- Font Awesome user icon -->
+									Profile
+								</a>
+							</li>
+							<li>
+								<a href="{{ url_for('auth.logout') }}">
+									<i class="fas fa-sign-out-alt"></i> <!-- Font Awesome sign out icon -->
+									Logout
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="chat-messages">
+					{% if selected_user_id != 0 %}
+					{% for message in messages %}
+					{% if current_user.id == message.sender_id %}
+					<div class="message sent">
+						<div class="message-sender">
+							<img src="{{ current_user.avatar(256) }}" alt="Sender Avatar" class = "avatar">
+							<span class="message-timestamp">
+								{{ moment(message.timestamp).format('dddd MMMM DD, YYYY h:mm A') }}
+							</span>
+						</div>
+						<div class="message-content">
+							<p>{{ message.body }}</p>
+						</div>
+					</div>
+					{% else %}
+					<div class="message received">
+						<div class="message-sender">
+							<img src="{{ selected_user.avatar(256) }}" alt="Receiver Avatar" class = "avatar">
+							<span class="message-timestamp">
+								{{ moment(message.timestamp).format('dddd MMMM DD, YYYY h:mm A') }}
+							</span>
+						</div>
+						<div class="message-content">
+							<p>{{ message.body }}</p>
+						</div>
+					</div>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
+				</div>
+				<div class="message-entry">
+					<form action = "/send_message" method = "post">
+						<textarea id="message-input" name = "message-input" placeholder="Type your message"></textarea>
+						<button id="send-button" class="send-button"><i class="fas fa-paper-plane"></i></button>
+					</form>
+				</div>
+				</script>
+
+			</div>
+		</div>
+	</body>
+</html>

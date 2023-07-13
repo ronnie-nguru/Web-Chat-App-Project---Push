@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ current_user.username }}</title>
+		<link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	</head>
+	<body>
+		{{ moment.include_moment() }}
+		<div class="container">
+			<div class="profile">
+				<div class="profile-picture">
+					<img src = "{{ current_user.avatar(256) }}">
+				</div>
+				<div class="profile-details lead">
+					<h1 id="name">{{ current_user.first_name }} {{ current_user.middle_name }} {{ current_user.last_name }}</h1>
+					<h3 class="role">{{ current_user.username }}</h3>
+					<p class=""><i class="fas fa-user-secret"></i>{{ current_user.gender | title}}</p>
+					<p class=""><i class="fas fa-envelope"></i>{{ current_user.email }}</p>
+					<p class=""><i class="fas fa-map-marker-alt"></i>{{ current_user.location }}</p>
+					<p class=""><i class="fas fa-birthday-cake"></i><span id="age">{{ moment(current_user.date_of_birth).format('dddd, MMMM DD, YYYY') }} ({{ moment(current_user.date_of_birth).fromNow()}})</span></p>
+				</div>
+			</div>
+			<div id="explore-profile" class="profile">
+				<a class="button-pill" href="{{ url_for('main.index') }}">
+					Explore Profile
+				</a>
+			</div>
+			<div class="profile">
+				<div class="actions">
+					<a class="action" href="{{ url_for('auth.logout') }}" id="logout-btn">
+						<i class="fas fa-sign-out-alt"></i>
+						<span>Logout</span>
+					</a>
+					<a class="action" href="../registration/editPatientDetails.php" id="edit-profile-btn">
+						<i class="fas fa-edit"></i>
+						<span>Edit Profile</span>
+					</a>
+				</div>
+				<div class="actions">
+					<a class="action" href="../registration/updatePassword.php" id="change-password-btn">
+						<i class="fas fa-lock"></i>
+						<span>Change Password</span>
+					</a>
+					<a class="action" href="../registration/updateEmailAddress.php" id="change-email-btn">
+						<i class="fas fa-envelope"></i>
+						<span>Change Email Address</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- Include moment.js for date formatting -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<!-- Include Font Awesome for icons -->
+		<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+	</body>
+</html>
