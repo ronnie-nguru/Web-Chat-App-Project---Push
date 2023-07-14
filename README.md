@@ -12,11 +12,35 @@ The Flask Web Chat Application is a real-time chat platform that allows users to
 - SQLite (database)
 - HTML/CSS/JavaScript
 ## Installation
+Install Python and pip:
+sudo yum install python3
+sudo yum install python3-pip
+Install virtualenv: sudo pip3 install virtualenv
+Create a virtual environment for your application: virtualenv venv
+source venv/bin/activate.
+Install the required Python libraries for your application using pip, typically stored in a requirements.txt file: pip install -r requirements.txt.
+Configure Nginx as a reverse proxy: Install Nginx: sudo yum install nginx
+Install Nginx: sudo yum install nginx
+Install Gunicorn: pip install gunicorn
+
 1. Clone the repository:
 git clone https://github.com/ronnie-nguru/WebChat-Application-Project.git
 Install the required dependencies.
 Run the application.
-Access the application in your web browser at http://16.170.240.125/ Deployment on AW
+Access the application in your web browser at http://16.170.240.125/ Deployment on AWS
+## Development on AWS EC2 instance
+Installing Application on AWS EC2
+To install and run your application on EC2, you'll need to follow several steps including setting up the server, installing libraries, configuring Nginx as a reverse proxy, running your server with Gunicorn, and configuring various files. Here's a step-by-step guide to help you through the process:
+Set up an EC2 instance:
+-	- Go to the AWS Management Console and navigate to the EC2 service.
+-	- Launch a new EC2 instance, choosing an appropriate Amazon Machine Image (AMI) based on your requirements.
+-	- Configure the instance details, such as instance type, network settings, and storage.
+-	- Create or select an existing key pair to securely connect to your EC2 instance.
+-	- Launch the instance.
+Connect to your EC2 instance:
+Once your EC2 instance is running, you can connect to it using SSH.
+Open your preferred terminal application and navigate to the directory where your key pair file is located.
+
 ## Usage
 Open your web browser and navigate to the public Ip address of your EC2 instance.
 Create an account or log in with your existing credentials. 
