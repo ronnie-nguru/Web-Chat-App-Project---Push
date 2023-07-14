@@ -12,16 +12,13 @@ The Flask Web Chat Application is a real-time chat platform that allows users to
 - SQLite (database)
 - HTML/CSS/JavaScript
 ## Installation
-Install Python and pip:
-sudo yum install python3
-sudo yum install python3-pip
-Install virtualenv: sudo pip3 install virtualenv
-Create a virtual environment for your application: virtualenv venv
-source venv/bin/activate.
-Install the required Python libraries for your application using pip, typically stored in a requirements.txt file: pip install -r requirements.txt.
-Configure Nginx as a reverse proxy: Install Nginx: sudo yum install nginx
-Install Nginx: sudo yum install nginx
-Install Gunicorn: pip install gunicorn
+-Install Python and pip: sudo yum install python3 sudo yum install python3-pip
+-Install virtualenv: sudo pip3 install virtualenv
+-Create a virtual environment for your application: virtualenv venv source venv/bin/activate.
+-Install the required Python libraries for your application using pip, typically stored in a requirements.txt file: pip install -r requirements.txt.
+-Configure Nginx as a reverse proxy: Install Nginx: sudo yum install nginx
+-Install Nginx: sudo yum install nginx
+-Install Gunicorn: pip install gunicorn
 
 1. Clone the repository:
    ```bash
