@@ -96,6 +96,8 @@ Start messaging and enjoy secure and private conversations with other users.
 
 13 directories, 34 files
 ## License
+## Credits 
+https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
 
 ## Contact
 -	ronnie.nguru@strathmore.edu
