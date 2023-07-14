@@ -24,6 +24,7 @@ Install Nginx: sudo yum install nginx
 Install Gunicorn: pip install gunicorn
 
 1. Clone the repository:
+   ```bash
 git clone https://github.com/ronnie-nguru/WebChat-Application-Project.git
 Install the required dependencies.
 Run the application.
